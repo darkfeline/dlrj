@@ -6,9 +6,18 @@
   "version": "0.1",
 
   "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_icon": "icon.png"
   },
+
+  "content_scripts": [
+    {
+      "matches": ["*://boards.4chan.org/*"],
+      "js": ["jquery-3.2.1.slim.min.js", "waitForKeyElements.js", "linkify.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+
   "permissions": [
     "activeTab",
     "storage"
