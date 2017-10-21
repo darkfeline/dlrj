@@ -18,8 +18,5 @@
     }
   ],
 
-  "permissions": [
-    "activeTab",
-    "storage"
-  ]
+  "permissions": []
 }
