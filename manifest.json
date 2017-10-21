@@ -15,6 +15,18 @@
       "js": ["jquery-3.2.1.slim.min.js", "waitForKeyElements.js", "linkify.js"],
       "run_at": "document_end",
       "all_frames": true
+    },
+    {
+      "matches": ["*://www.dlsite.com/maniax/*/=/product_id/*"],
+      "js": ["jquery-3.2.1.slim.min.js", "utils.js", "dlsite.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://hvdb.me/Dashboard/WorkDetails/*"],
+      "js": ["jquery-3.2.1.slim.min.js", "utils.js", "hvdb.js"],
+      "run_at": "document_end",
+      "all_frames": true
     }
   ],
 
