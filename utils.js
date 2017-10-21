@@ -12,7 +12,7 @@ function hvdbURL(code) {
 
 function addLinkbar(code) {
   jQuery('body').prepend(`
-<div style="padding:0.5em;background-color:lightgray">
+<div style="padding:0.5em;background-color:lightgray;font-size:large;">
 <a href="${DLSiteWorkURL('RJ' + code)}" rel="noreferrer">Work</a>
 <a href="${DLSiteAnnounceURL('RJ' + code)}" rel="noreferrer">Announce</a>
 <a href="${hvdbURL(code)}" rel="noreferrer">HVDB</a>
