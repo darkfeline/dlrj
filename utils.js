@@ -7,7 +7,7 @@ function DLSiteAnnounceURL(rjcode) {
 }
 
 function hvdbURL(code) {
-  return `http://hvdb.me/Dashboard/WorkDetails/${code}`;
+  return `https://hvdb.me/Dashboard/WorkDetails/${code}`;
 }
 
 function addLinkbar(code) {
