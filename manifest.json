@@ -13,7 +13,7 @@
   "content_scripts": [
     {
       "matches": ["*://boards.4chan.org/*"],
-      "js": ["jquery-3.2.1.slim.min.js", "waitForKeyElements.js", "linkify.js"],
+      "js": ["jquery-3.2.1.slim.min.js", "waitForKeyElements.js", "utils.js", "linkify.js"],
       "run_at": "document_end",
       "all_frames": true
     },
