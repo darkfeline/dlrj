@@ -3,13 +3,9 @@
 
   jQuery.noConflict();
 
-  function linkify(query) {
+  waitForKeyElements("blockquote.postMessage", function(query) {
     query.each(function() {
-      this.innerHTML = this.innerHTML.replace(
-          /(RJ[0-9]{6})(?!<\/a>|" rel=)/gi,
-        `<a href="${DLSiteWorkURL('$1')}" rel="noreferrer">$1</a>`);
+      this.innerHTML = linkifyRJ(this.innerHTML);
     });
-  }
-
-  waitForKeyElements("blockquote.postMessage", linkify);
+  });
 })();
