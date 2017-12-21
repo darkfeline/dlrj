@@ -17,6 +17,7 @@ function hvdbURL(code) {
 }
 
 function addLinkbar(code, extra='') {
+  code = ('0000' + code).slice(-6)  // Pad preceding zeros
   jQuery('body').prepend(`
 <div style="padding:0.5em;background-color:lightgray;font-size:large;">
 <a href="${DLSiteWorkURL('RJ' + code)}" rel="noreferrer">DLSite</a>
