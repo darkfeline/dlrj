@@ -33,3 +33,7 @@ function getDLSiteWorkTitle() {
   elem.children().remove();
   return elem.text().trim();
 }
+
+function getHVDBWorkTitle() {
+  return jQuery('#Name').attr('value');
+}
