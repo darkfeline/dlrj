@@ -1,9 +1,3 @@
-function linkifyRJ(string) {
-  return string.replace(
-      /(RJ[0-9]{6})(?!<\/a>|" rel=)/gi,
-    `<a href="${DLSiteWorkURL('$1')}" rel="noreferrer">$1</a>`);
-}
-
 function DLSiteWorkURL(rjcode) {
   return `http://www.dlsite.com/maniax/work/=/product_id/${rjcode}`;
 }
