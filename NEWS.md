@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.2.1 (2018-10-29)
+
+* Also support lowercase
+
 ## 1.2.0 (2017-12-22)
 
 * Added Nyaa links to HVDB page
