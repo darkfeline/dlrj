@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.2.2 (2018-11-23)
+
+* Fix hiroyuki (there's no cure for stupidity LOL).
+
 ## 1.2.1 (2018-10-29)
 
 * Also support lowercase
