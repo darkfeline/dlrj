@@ -35,5 +35,5 @@ function getDLSiteWorkTitle() {
 }
 
 function getHVDBWorkTitle() {
-  return jQuery('#Name').attr('value');
+  return jQuery('label[for="Name"]').next('div').find('label#circleLabel').text().trim();
 }

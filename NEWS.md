@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.2.3 (2021-01-11)
+
+* Fix Nyaa links for new HVDB site.
+
 ## 1.2.2 (2018-11-23)
 
 * Fix hiroyuki (there's no cure for stupidity LOL).
