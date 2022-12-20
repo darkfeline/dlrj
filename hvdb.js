@@ -12,5 +12,6 @@
     code = ('0000' + code).slice(-6);
     break;
   }
+  code = 'RJ' + code;
   addLinkbarWithNyaa(code, getHVDBWorkTitle());
 })();
