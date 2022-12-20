@@ -1,7 +1,16 @@
 (function() {
   'use strict';
   var code = window.location.href.match(/WorkDetails\/([0-9]+)/)[1];
-  code = ('0000' + code).slice(-6)  // Pad preceding zeros
-  code = 'RJ' + code
+  // Pad preceding zeros
+  switch (code.length) {
+  case 7:
+    // 8 digit beginning with '01'
+    code = '0' + code;
+    break;
+  default:
+    // 6 digit format
+    code = ('0000' + code).slice(-6);
+    break;
+  }
   addLinkbarWithNyaa(code, getHVDBWorkTitle());
 })();
