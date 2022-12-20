@@ -11,11 +11,10 @@ function hvdbURL(code) {
 }
 
 function addLinkbar(code, extra='') {
-  code = ('0000' + code).slice(-6)  // Pad preceding zeros
   jQuery('body').prepend(`
 <div style="padding:0.5em;background-color:lightgray;font-size:large;">
-<a href="${DLSiteWorkURL('RJ' + code)}" rel="noreferrer">DLSite</a>
-(<a href="${DLSiteAnnounceURL('RJ' + code)}" rel="noreferrer">announce</a>)
+<a href="${DLSiteWorkURL(code)}" rel="noreferrer">DLSite</a>
+(<a href="${DLSiteAnnounceURL(code)}" rel="noreferrer">announce</a>)
 <a href="${hvdbURL(code)}" rel="noreferrer">HVDB</a>
 ${extra}
 </div>
