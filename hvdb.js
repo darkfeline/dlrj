@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var code = window.location.href.match(/WorkDetails\/([0-9]+)/)[1];
+  var code = window.location.href.match(/WorkDetails\/(?:RJ)?([0-9]+)/)[1];
   // Pad preceding zeros
   switch (code.length) {
   case 7:
