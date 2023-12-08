@@ -10,19 +10,24 @@ function hvdbURL(code) {
   return `https://hvdb.me/Dashboard/WorkDetails/${code}`;
 }
 
-function addLinkbar(code, extra='') {
+function asmrURL(rjcode) {
+  return `https:/asmr.one/work/${rjcode}`;
+}
+
+function addLinkbar(rjcode, extra='') {
   jQuery('body').prepend(`
 <div style="padding:0.5em;background-color:lightgray;font-size:large;">
-<a href="${DLSiteWorkURL(code)}" rel="noreferrer">DLSite</a>
-(<a href="${DLSiteAnnounceURL(code)}" rel="noreferrer">announce</a>)
-<a href="${hvdbURL(code)}" rel="noreferrer">HVDB</a>
+<a href="${DLSiteWorkURL(rjcode)}" rel="noreferrer">DLSite</a>
+(<a href="${DLSiteAnnounceURL(rjcode)}" rel="noreferrer">announce</a>)
+<a href="${hvdbURL(rjcode)}" rel="noreferrer">HVDB</a>
+<a href="${asmrURL(rjcode)}" rel="noreferrer">ASMR</a>
 ${extra}
 </div>
 `);
 }
 
-function addLinkbarWithNyaa(code, title) {
-  addLinkbar(code, `
+function addLinkbarWithNyaa(rjcode, title) {
+  addLinkbar(rjcode, `
 <a href="https://sukebei.nyaa.si/?q=${encodeURIComponent(title)}">sukebei</a>
 `)
 }
