@@ -11,7 +11,7 @@ function hvdbURL(code) {
 }
 
 function asmrURL(rjcode) {
-  return `https:/asmr.one/work/${rjcode}`;
+  return `https://asmr.one/work/${rjcode}`;
 }
 
 function addLinkbar(rjcode, extra='') {
