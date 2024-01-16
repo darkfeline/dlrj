@@ -33,8 +33,7 @@ function addLinkbarWithNyaa(rjcode, title) {
 }
 
 function getDLSiteWorkTitle() {
-  var elem = jQuery('#work_name').find('a').clone();
-  elem.children().remove();
+  var elem = jQuery('#work_name');
   return elem.text().trim();
 }
 
