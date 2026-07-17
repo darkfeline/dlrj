@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.3.0
+
+* Add unikon link to top navigation bar.
+
 ## 1.2.3 (2021-01-11)
 
 * Fix Nyaa links for new HVDB site.

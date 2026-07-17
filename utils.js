@@ -14,6 +14,10 @@ function asmrURL(rjcode) {
   return `https://asmr.one/work/${rjcode}`;
 }
 
+function unikonURL(rjcode) {
+  return `https://asmr.unikon.art/work/${rjcode}`;
+}
+
 function addLinkbar(rjcode, extra='') {
   jQuery('body').prepend(`
 <div style="padding:0.5em;background-color:lightgray;font-size:large;">
@@ -21,6 +25,7 @@ function addLinkbar(rjcode, extra='') {
 (<a href="${DLSiteAnnounceURL(rjcode)}" rel="noreferrer">announce</a>)
 <a href="${hvdbURL(rjcode)}" rel="noreferrer">HVDB</a>
 <a href="${asmrURL(rjcode)}" rel="noreferrer">ASMR</a>
+<a href="${unikonURL(rjcode)}" rel="noreferrer">unikon</a>
 ${extra}
 </div>
 `);

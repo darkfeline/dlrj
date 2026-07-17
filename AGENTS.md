@@ -53,14 +53,14 @@ graph TD
 ### 2. DLSite Product Pages (`dlsite.js`)
 - Runs on: `*://www.dlsite.com/maniax/*/=/product_id/*`
 - Extracts the RJ-code from the page URL using regex matching.
-- Retrieves the title using [getDLSiteWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L35-L38).
-- Prepends a gray information/link bar to the top of the body with [addLinkbarWithNyaa](file:///home/ionasal/src/dlrj/utils.js#L29-L33).
+- Retrieves the title using [getDLSiteWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L40-L43).
+- Prepends a gray information/link bar to the top of the body with [addLinkbarWithNyaa](file:///home/ionasal/src/dlrj/utils.js#L34-L38).
 
 ### 3. HVDB Work Details Pages (`hvdb.js`)
 - Runs on: `*://hvdb.me/Dashboard/WorkDetails/*`
 - Extracts the code from the URL and normalizes it (ensures `RJ` prefix and zero-pads short numerical IDs to standard 6 or 8 digit format).
-- Retrieves the title using [getHVDBWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L40-L42).
-- Prepends the standard linkbar using [addLinkbarWithNyaa](file:///home/ionasal/src/dlrj/utils.js#L29-L33).
+- Retrieves the title using [getHVDBWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L45-L47).
+- Prepends the standard linkbar using [addLinkbarWithNyaa](file:///home/ionasal/src/dlrj/utils.js#L34-L38).
 
 ---
 
@@ -71,10 +71,11 @@ graph TD
 - [DLSiteAnnounceURL(rjcode)](file:///home/ionasal/src/dlrj/utils.js#L5-L7): Returns the DLSite announcement URL.
 - [hvdbURL(code)](file:///home/ionasal/src/dlrj/utils.js#L9-L11): Returns the HVDB page URL.
 - [asmrURL(rjcode)](file:///home/ionasal/src/dlrj/utils.js#L13-L15): Returns the ASMR.one URL.
+- [unikonURL(rjcode)](file:///home/ionasal/src/dlrj/utils.js#L17-L19): Returns the ASMR unikon URL.
 
 ### DOM Manipulation Utilities
-- [addLinkbar(rjcode, extra='')](file:///home/ionasal/src/dlrj/utils.js#L17-L27): Inject the HTML toolbar containing links to DLSite, DLSite Announce, HVDB, and ASMR.one at the top of the page.
-- [addLinkbarWithNyaa(rjcode, title)](file:///home/ionasal/src/dlrj/utils.js#L29-L33): Appends a Nyaa Sukebei search link using the work title to the standard linkbar.
+- [addLinkbar(rjcode, extra='')](file:///home/ionasal/src/dlrj/utils.js#L21-L32): Inject the HTML toolbar containing links to DLSite, DLSite Announce, HVDB, ASMR.one, and unikon at the top of the page.
+- [addLinkbarWithNyaa(rjcode, title)](file:///home/ionasal/src/dlrj/utils.js#L34-L38): Appends a Nyaa Sukebei search link using the work title to the standard linkbar.
 
 ---
 
@@ -83,7 +84,7 @@ graph TD
 When implementing modifications or resolving bugs in this repository, observe the following rules:
 
 ### 1. Match Pattern and URL Handling
-- DLSite and HVDB page structures or URL formats can change. If links do not render, inspect selectors in [getDLSiteWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L35-L38) or [getHVDBWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L40-L42).
+- DLSite and HVDB page structures or URL formats can change. If links do not render, inspect selectors in [getDLSiteWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L40-L43) or [getHVDBWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L45-L47).
 - Ensure any RJ-code extraction regex (e.g., in [dlsite.js](file:///home/ionasal/src/dlrj/dlsite.js) or [hvdb.js](file:///home/ionasal/src/dlrj/hvdb.js)) accommodates different lengths (e.g. 6-digit and 8-digit RJ-codes).
 
 ### 2. Chrome Extension Configuration
@@ -93,5 +94,10 @@ When implementing modifications or resolving bugs in this repository, observe th
 ### 3. Adding New Platforms or Targets
 If you need to add support for another database or website:
 1. Define a URL generation helper in [utils.js](file:///home/ionasal/src/dlrj/utils.js).
-2. Update [addLinkbar](file:///home/ionasal/src/dlrj/utils.js#L17-L27) to incorporate the new platform link.
+2. Update [addLinkbar](file:///home/ionasal/src/dlrj/utils.js#L21-L32) to incorporate the new platform link.
 3. If creating a new content script, register it in the `"content_scripts"` array of [manifest.json](file:///home/ionasal/src/dlrj/manifest.json) under `"js"`, ensuring `jquery` and `utils.js` are loaded first.
+
+### 4. Updating the Changelog
+- When implementing a feature or fix, document the change in [NEWS.md](file:///home/ionasal/src/dlrj/NEWS.md).
+- Insert a list item summarizing your changes under the header for the target version (e.g. `## X.Y.Z`). Do not append a release date to the version header; dates are added when the version is officially released.
+
