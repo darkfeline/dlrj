@@ -18,6 +18,10 @@
     }
   },
 
+  "background": {
+    "service_worker": "background.js"
+  },
+
   "content_scripts": [
     {
       "matches": ["*://boards.4chan.org/*", "*://boards.4channel.org/*"],
@@ -37,5 +41,5 @@
     }
   ],
 
-  "permissions": []
+  "permissions": ["declarativeContent"]
 }

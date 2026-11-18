@@ -9,6 +9,7 @@ Welcome! This guide is written for AI agents and developer tools to quickly get 
 The repository is structured as a standard Chrome/Chromium Extension (Manifest V3).
 
 - [manifest.json](file:///home/ionasal/src/dlrj/manifest.json) — Extension entry point, metadata, and script registration.
+- [background.js](file:///home/ionasal/src/dlrj/background.js) — Background service worker that disables the extension action by default and enables it on matching DLSite and HVDB work pages via `declarativeContent`.
 - [popup.html](file:///home/ionasal/src/dlrj/popup.html) — Extension action popup HTML document.
 - [popup.js](file:///home/ionasal/src/dlrj/popup.js) — Script for the extension action popup that queries the active tab and renders the linkbar.
 - [utils.js](file:///home/ionasal/src/dlrj/utils.js) — Shared utility functions for generating URLs, extracting page titles, and creating navigation bars.
@@ -27,7 +28,8 @@ The repository is structured as a standard Chrome/Chromium Extension (Manifest V
 ```mermaid
 graph TD
     subgraph Browser Context
-        M[manifest.json] --> P[popup.html]
+        M[manifest.json] --> BG[background.js]
+        M --> P[popup.html]
         M --> CS1[4chan boards]
         M --> CS2[DLSite product page]
         M --> CS3[HVDB work page]

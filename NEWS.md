@@ -4,6 +4,7 @@
 
 * Add unikon link to navigation bar.
 * Move navigation bar from an in-page bar to an extension popup.
+* Dim extension icon on unrelated pages and remove white border from icon.
 
 ## 1.2.3 (2021-01-11)
 
