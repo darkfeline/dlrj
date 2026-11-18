@@ -1,8 +1,9 @@
 # Release Notes
 
-## 1.3.0
+## 2.0.0
 
-* Add unikon link to top navigation bar.
+* Add unikon link to navigation bar.
+* Move navigation bar from an in-page bar to an extension popup.
 
 ## 1.2.3 (2021-01-11)
 

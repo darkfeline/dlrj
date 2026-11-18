@@ -10,6 +10,14 @@
     "128": "icon128.png"
   },
 
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+
   "content_scripts": [
     {
       "matches": ["*://boards.4chan.org/*", "*://boards.4channel.org/*"],
@@ -20,14 +28,12 @@
     {
       "matches": ["*://www.dlsite.com/maniax/*/=/product_id/*"],
       "js": ["jquery-3.2.1.slim.min.js", "utils.js", "dlsite.js"],
-      "run_at": "document_end",
-      "all_frames": true
+      "run_at": "document_end"
     },
     {
       "matches": ["*://hvdb.me/Dashboard/WorkDetails/*"],
       "js": ["jquery-3.2.1.slim.min.js", "utils.js", "hvdb.js"],
-      "run_at": "document_end",
-      "all_frames": true
+      "run_at": "document_end"
     }
   ],
 

@@ -9,12 +9,14 @@ Welcome! This guide is written for AI agents and developer tools to quickly get 
 The repository is structured as a standard Chrome/Chromium Extension (Manifest V3).
 
 - [manifest.json](file:///home/ionasal/src/dlrj/manifest.json) — Extension entry point, metadata, and script registration.
-- [utils.js](file:///home/ionasal/src/dlrj/utils.js) — Shared utility functions for generating URLs, extracting page titles, and creating top navigation bars.
+- [popup.html](file:///home/ionasal/src/dlrj/popup.html) — Extension action popup HTML document.
+- [popup.js](file:///home/ionasal/src/dlrj/popup.js) — Script for the extension action popup that queries the active tab and renders the linkbar.
+- [utils.js](file:///home/ionasal/src/dlrj/utils.js) — Shared utility functions for generating URLs, extracting page titles, and creating navigation bars.
 - [dlsite.js](file:///home/ionasal/src/dlrj/dlsite.js) — Content script running on DLSite product pages.
 - [hvdb.js](file:///home/ionasal/src/dlrj/hvdb.js) — Content script running on HVDB work details pages.
 - [linkify.js](file:///home/ionasal/src/dlrj/linkify.js) — Content script running on 4chan board pages to parse and linkify RJ-codes.
 - [waitForKeyElements.js](file:///home/ionasal/src/dlrj/waitForKeyElements.js) — Utility function to wait for asynchronously-loaded DOM elements (specifically post messages on 4chan).
-- [jquery-3.2.1.slim.min.js](file:///home/ionasal/src/dlrj/jquery-3.2.1.slim.min.js) — Local jQuery slim dependency used across all content scripts.
+- [jquery-3.2.1.slim.min.js](file:///home/ionasal/src/dlrj/jquery-3.2.1.slim.min.js) — Local jQuery slim dependency used across all content scripts and the popup.
 - [README.md](file:///home/ionasal/src/dlrj/README.md) — Basic installation instructions.
 - [NEWS.md](file:///home/ionasal/src/dlrj/NEWS.md) — Release notes and project changelog.
 
@@ -25,23 +27,31 @@ The repository is structured as a standard Chrome/Chromium Extension (Manifest V
 ```mermaid
 graph TD
     subgraph Browser Context
-        M[manifest.json] --> CS1[4chan boards]
+        M[manifest.json] --> P[popup.html]
+        M --> CS1[4chan boards]
         M --> CS2[DLSite product page]
         M --> CS3[HVDB work page]
     end
 
     subgraph Scripts & Libraries
+        P --> popup[popup.js]
+        P --> utils[utils.js]
+        P --> jq[jquery-3.2.1.slim.min.js]
+
         CS1 --> linkify[linkify.js]
         CS1 --> wait[waitForKeyElements.js]
-        CS1 --> jq[jquery-3.2.1.slim.min.js]
+        CS1 --> jq
         
         CS2 --> dlsite[dlsite.js]
-        CS2 --> utils[utils.js]
+        CS2 --> utils
         CS2 --> jq
         
         CS3 --> hvdb[hvdb.js]
         CS3 --> utils
         CS3 --> jq
+
+        popup -. getWorkInfo .-> dlsite
+        popup -. getWorkInfo .-> hvdb
     end
 ```
 
@@ -52,15 +62,16 @@ graph TD
 
 ### 2. DLSite Product Pages (`dlsite.js`)
 - Runs on: `*://www.dlsite.com/maniax/*/=/product_id/*`
-- Extracts the RJ-code from the page URL using regex matching.
-- Retrieves the title using [getDLSiteWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L40-L43).
-- Prepends a gray information/link bar to the top of the body with [addLinkbarWithNyaa](file:///home/ionasal/src/dlrj/utils.js#L34-L38).
+- Listens for `getWorkInfo` messages from the extension popup ([popup.js](file:///home/ionasal/src/dlrj/popup.js)).
+- Extracts the RJ-code from the page URL using regex matching and retrieves the title using [getDLSiteWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L40-L43).
 
 ### 3. HVDB Work Details Pages (`hvdb.js`)
 - Runs on: `*://hvdb.me/Dashboard/WorkDetails/*`
-- Extracts the code from the URL and normalizes it (ensures `RJ` prefix and zero-pads short numerical IDs to standard 6 or 8 digit format).
-- Retrieves the title using [getHVDBWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L45-L47).
-- Prepends the standard linkbar using [addLinkbarWithNyaa](file:///home/ionasal/src/dlrj/utils.js#L34-L38).
+- Listens for `getWorkInfo` messages from the extension popup ([popup.js](file:///home/ionasal/src/dlrj/popup.js)).
+- Extracts the code from the URL and normalizes it (ensures `RJ` prefix and zero-pads short numerical IDs to standard 6 or 8 digit format), and retrieves the title using [getHVDBWorkTitle](file:///home/ionasal/src/dlrj/utils.js#L45-L47).
+
+### 4. Extension Popup (`popup.html`, `popup.js`)
+- Queries the active tab for work info (`rjcode` and `title`) via `chrome.tabs.sendMessage` and renders the linkbar in the popup using [addLinkbarWithNyaa](file:///home/ionasal/src/dlrj/utils.js#L34-L38).
 
 ---
 
